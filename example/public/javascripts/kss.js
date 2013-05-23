@@ -4,6 +4,15 @@ var KssStateGenerator = (function() {
     var idx, idxs, pseudos, replaceRule, rule, stylesheet, _i, _len, _len2, _ref, _ref2;
     pseudos = /(\:hover|\:disabled|\:active|\:visited|\:focus)/g;
     try {
+      // Remove any previously added kss rules
+      headEl = document.getElementsByTagName('head')[0];
+      for (var i in headEl.children) {
+        node = headEl.children[i];
+        if (node.tagName == "STYLE" && node.className == "kss") {
+          headEl.removeChild(node);
+        }
+      }
+
       _ref = document.styleSheets;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         stylesheet = _ref[_i];
@@ -27,6 +36,7 @@ var KssStateGenerator = (function() {
     headEl = document.getElementsByTagName('head')[0];
     styleEl = document.createElement('style');
     styleEl.type = 'text/css';
+    styleEl.className = 'kss';
     if (styleEl.styleSheet) {
       styleEl.styleSheet.cssText = rule;
     } else {
