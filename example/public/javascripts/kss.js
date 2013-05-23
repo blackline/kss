@@ -3,10 +3,11 @@ var KssStateGenerator = (function() {
   function KssStateGenerator() {
     var idx, idxs, pseudos, replaceRule, rule, stylesheet, _i, _len, _len2, _ref, _ref2;
     pseudos = /(\:hover|\:disabled|\:active|\:visited|\:focus)/g;
+
     try {
       // Remove any previously added kss rules
       headEl = document.getElementsByTagName('head')[0];
-      for (var i in headEl.children) {
+      for (var i=headEl.children.length - 1; i >= 0; i--) {
         node = headEl.children[i];
         if (node.tagName == "STYLE" && node.className == "kss") {
           headEl.removeChild(node);
