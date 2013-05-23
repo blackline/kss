@@ -12,6 +12,9 @@
           stylesheet = _ref[_i];
           idxs = [];
           _ref2 = stylesheet.cssRules;
+          if (stylesheet.href.matches('\/components\/')) {
+            continue;
+          }
           for (idx = 0, _len2 = _ref2.length; idx < _len2; idx++) {
             rule = _ref2[idx];
             while ((rule.type === CSSRule.STYLE_RULE) && pseudos.test(rule.selectorText)) {
