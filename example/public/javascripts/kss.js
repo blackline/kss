@@ -18,6 +18,9 @@ var KssStateGenerator = (function() {
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         stylesheet = _ref[_i];
         idxs = [];
+        if (stylesheet.media[0] == "print") {
+          continue;
+        }
         _ref2 = stylesheet.cssRules;
         for (idx = 0, _len2 = _ref2.length; idx < _len2; idx++) {
           rule = _ref2[idx];
